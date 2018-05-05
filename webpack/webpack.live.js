@@ -8,7 +8,7 @@ var targetUrl = require("./target.js");
 const ENV = process.env.NODE_ENV = process.env.ENV = "live";
 
 module.exports = webpackMerge(commonConfig, {
-	mode: "development",
+	mode: "production",
 	output: {
 		path: helpers.root("public_html/dist"),
 		publicPath: "dist",
@@ -16,10 +16,13 @@ module.exports = webpackMerge(commonConfig, {
 		chunkFilename: "[id].[hash].chunk.js"
 	},
 
+	performance: {
+		hints: false
+	},
+
 	plugins: [
 		new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.optimize.UglifyJsPlugin(),
-        new MiniCssExtractPlugin({filename: "[name].css"}),
+        new MiniCssExtractPlugin({filename: "[name].[hash].css"}),
 		new webpack.DefinePlugin({
 			"process.env": {
 				"BASE_HREF": JSON.stringify(targetUrl().substring(targetUrl().indexOf("/", targetUrl().indexOf("//") + 2))),

@@ -36,19 +36,6 @@ module.exports = {
 		]
 	},
 
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-            	styles: {
-                    chunks: "all",
-                    enforce: true,
-                    name: "styles",
-					test: /.css$/
-				}
-			}
-        }
-    },
-
     plugins: [
 
 		new webpack.ContextReplacementPlugin(
