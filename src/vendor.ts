@@ -12,7 +12,6 @@ import "rxjs";
 // You can import js, ts, css, sass, ...
 import "jquery";
 import "bootstrap";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 // font awesome
 import "@fortawesome/fontawesome";
