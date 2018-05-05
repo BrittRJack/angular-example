@@ -38,14 +38,18 @@ module.exports = {
 
     optimization: {
         splitChunks: {
-            chunks: "all"
+            cacheGroups: {
+            	styles: {
+                    chunks: "all",
+                    enforce: true,
+                    name: "styles",
+					test: /.css$/
+				}
+			}
         }
     },
 
     plugins: [
-		// new webpack.optimize.CommonsChunkPlugin({
-		// 	name: ["app", "vendor", "polyfills"]
-		// }),
 
 		new webpack.ContextReplacementPlugin(
 			// The (\\|\/) piece accounts for path separators in *nix and Windows
