@@ -4,6 +4,7 @@
 /.idea
 /node_modules
 /vendor
+/webpack/target.js
 /src/**/*.js
 /src/**/*.js.map
 /public_html/dist
