@@ -9,7 +9,7 @@ module.exports = {
 		"polyfills": helpers.root("src") + "/polyfills.ts",
 		"vendor": helpers.root("src") + "/vendor.ts",
 		"app": helpers.root("src") + "/main.ts",
-		"css": helpers.root("src/app") + "/app.css"
+		"css": helpers.root("src/splash") + "/splash.css"
 	},
 
 	resolve: {
