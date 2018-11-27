@@ -1,14 +1,15 @@
-var webpack = require("webpack");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
-var MiniCssExtractPlugin = require("mini-css-extract-plugin");
-var helpers = require("./helpers");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const helpers = require("./helpers");
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 module.exports = {
 	entry: {
 		"polyfills": helpers.root("src") + "/polyfills.ts",
 		"vendor": helpers.root("src") + "/vendor.ts",
 		"app": helpers.root("src") + "/main.ts",
-		"css": helpers.root("src") + "/app.css"
+		"css": helpers.root("src/app") + "/app.css"
 	},
 
 	resolve: {
@@ -47,17 +48,13 @@ module.exports = {
 				// your Angular Async Route paths relative to this root directory
 			}
 		),
+		 new webpack.ContextReplacementPlugin(/@angular(\\|\/)core(\\|\/)/, helpers.root("src")),
 
-		new webpack.ProvidePlugin({
-			$: "jquery",
-			jQuery: "jquery",
-			"window.jQuery": "jquery",
-			Popper: ['popper.js', 'default']
-		}),
+		 new FilterWarningsPlugin({
+			 exclude: /System.import/
+		 }),
 
-		new webpack.ContextReplacementPlugin(/@angular(\\|\/)core(\\|\/)/, helpers.root("src")),
-
-		new HtmlWebpackPlugin({
+		 new HtmlWebpackPlugin({
 			inject: "head",
 			filename: helpers.root("public_html") + "/index.html",
 			template: helpers.root("webpack") + "/index.ejs"
